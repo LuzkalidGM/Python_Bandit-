@@ -1,0 +1,7 @@
+[bandit]
+# Excluir directorios de test y entornos virtuales
+exclude: /tests,/venv,/env
+# Ignorar advertencias específicas
+skips: B101,B311
+# Objetivos específicos
+targets: api,database,services,app.py
