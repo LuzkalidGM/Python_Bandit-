@@ -19,11 +19,20 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install bandit
-    - name: Run Bandit security scan
+    - name: Run Bandit security scan (Basic)
       run: |
-        bandit -r . -f json -o bandit-results.json
+        bandit -r project_demo/ -f json -o bandit-basic-results.json
+    - name: Run Bandit with custom plugins
+      run: |
+        bandit -r project_demo/ -p examples/custom_plugins/custom_bandit_checks.py -f json -o bandit-custom-results.json
+    - name: Generate HTML report
+      run: |
+        python scripts/generate_report.py
     - name: Upload security scan results
       uses: actions/upload-artifact@v3
       with:
         name: bandit-results
-        path: bandit-results.json
+        path: |
+          bandit-basic-results.json
+          bandit-custom-results.json
+          bandit-report.html
