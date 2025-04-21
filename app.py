@@ -1,4 +1,4 @@
-# app.py (corregido)
+# app.py (corregido )
 import os
 import sqlite3
 import subprocess
