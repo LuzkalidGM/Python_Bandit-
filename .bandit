@@ -1,16 +1,9 @@
-# .bandit
+[bandit]
+exclude_dirs = tests,venv,env,.venv,.env
+skips = 
 
-# Directorios a excluir del análisis
-exclude_dirs: ['tests', 'venv', 'env', '.venv', '.env']
+[any_other_function_with_shell_equals_true]
+no_shell = subprocess.Popen
 
-# IDs de pruebas específicas para saltar (si tienes un buen motivo)
-# Por ejemplo, si estás usando una función insegura de manera segura
-skips: []  # Ejemplo: ['B311']
-
-# Reglas personalizadas para pruebas específicas
-any_other_function_with_shell_equals_true:
-  no_shell: ['subprocess.Popen']
-
-# Puedes ajustar la severidad de ciertas pruebas
-hardcoded_password_string:
-  severity: high
+[hardcoded_password_string]
+hardcoded_password_string_re = (?i)(password|passwd|pwd)
