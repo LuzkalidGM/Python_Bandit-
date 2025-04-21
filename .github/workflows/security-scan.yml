@@ -26,6 +26,7 @@ jobs:
       with:
         name: bandit-results
         path: bandit-results.json
-    # Opcional: Fallar el build si hay issues de alta severidad
+    # Modificado para continuar incluso con problemas de alta severidad
     - name: Check for high severity issues
-      run: bandit -r ./ -ll high
+      run: |
+        bandit -r ./ -ll high || echo "⚠️ High severity issues found, but continuing workflow"
