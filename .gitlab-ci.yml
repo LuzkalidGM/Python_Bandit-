@@ -1,0 +1,12 @@
+stages:
+  - test
+
+security_scan:
+  stage: test
+  image: python:3.10
+  script:
+    - pip install bandit
+    - bandit -r ./ -f json -o bandit-results.json
+  artifacts:
+    paths:
+      - bandit-results.json
